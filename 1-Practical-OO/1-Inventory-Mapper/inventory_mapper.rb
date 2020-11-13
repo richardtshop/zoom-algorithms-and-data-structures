@@ -9,7 +9,6 @@ class Inventory
 
   attr_reader :parts, :product_output, :current_parts
 
-  
   def initialize(parts_string)
     @parts = parts_string.split('')
     @product_output = { 'Shelf' => 0, 'Stool' => 0, 'Table' => 0 }
