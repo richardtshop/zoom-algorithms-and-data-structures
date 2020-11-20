@@ -39,7 +39,7 @@ class Inventory
   private
 
   def add_product_to_output(value, key, top, legs)
-    while value['top'] >= top && value['legs'] >= legs 
+    while value['top'] >= top && value['legs'] >= legs
       @product_output[key] += top
       value['legs'] -= legs
       value['top'] -= top
