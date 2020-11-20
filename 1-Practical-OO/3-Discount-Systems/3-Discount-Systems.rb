@@ -1,3 +1,5 @@
+# TO DO - Minitest
+
 # Discounter module to include in Product class
 module Discounter
   
@@ -88,8 +90,6 @@ class ProductGroup
     end
   end
 end
-
-
 
 checkout1 = Checkout.new(products: [['grapes', 1], ['apples', 0], ['peaches', 1]]) # output => 12
 puts checkout1.to_dollars_string
