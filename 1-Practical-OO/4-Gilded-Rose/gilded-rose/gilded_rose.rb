@@ -12,33 +12,34 @@ class GildedRose
   
   def update_single_item(item)
     
-    if item.name == "Aged Brie"
-      quality_increase = item.sell_in < 0 ? 2 : 1
-      item.quality += quality_increase
-    elsif item.name == "Backstage passes to a TAFKAL80ETC concert"
+    if item.name == "Backstage passes to a TAFKAL80ETC concert"
       item.quality += 1
       item.quality += 1 if item.sell_in < 11
       item.quality += 1 if item.sell_in < 6 
       item.quality = 0 if item.sell_in < 0
+    elsif item.name == "Aged Brie"
+      item.quality += adjust_item_quality(item, 2, 1)
     elsif item.name == "Conjured Mana Cake"
-      item.quality -= 2 
-      item.quality -= 2 if item.sell_in < 0
+      item.quality += adjust_item_quality(item, -4, -2)
     elsif item.name =="Sulfuras, Hand of Ragnaros"
-      item.quality = item.quality
+      item.quality += adjust_item_quality(item, 0, 0)
     else
-      item.quality -= 1 
-      item.quality -= 1 if item.sell_in < 0
+      item.quality += adjust_item_quality(item, -2, -1)
     end
     
     unless item.name == "Sulfuras, Hand of Ragnaros"
       item.sell_in -= 1 
-      item.quality = adjusted_quality(item)
+      item.quality = final_adjusted_quality(item)
     end
   end
   
   private
   
-  def adjusted_quality(item)
+  def adjust_item_quality(item, out_of_date_change, in_date_change)
+    item.sell_in < 0 ? out_of_date_change : in_date_change
+  end
+  
+  def final_adjusted_quality(item)
     return MAX_QUALITY if item.quality > MAX_QUALITY
     return MIN_QUALITY if item.quality < MIN_QUALITY
     
