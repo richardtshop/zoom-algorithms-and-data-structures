@@ -1,6 +1,7 @@
 class GildedRose
   MAX_QUALITY = 50
-
+  MIN_QUALITY = 0
+  
   def initialize(items)
     @items = items
   end
@@ -39,7 +40,8 @@ class GildedRose
   
   def adjusted_quality(item)
     return MAX_QUALITY if item.quality > MAX_QUALITY
-    return 0 if item.quality < 0
+    return MIN_QUALITY if item.quality < MIN_QUALITY
+    
     item.quality
   end
   
