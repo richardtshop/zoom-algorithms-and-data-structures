@@ -30,6 +30,21 @@ class  GildedRoseTest < Minitest::Test
     quality = 10
     brie = Item.new("Aged Brie", 0, quality)
     GildedRose.new([brie]).update_quality()
+    assert_equal(quality + 1, brie.quality)
+  end
+
+  def test_aged_brie_increase_in_quality_as_it_ages_by_two_after_sell_by_date
+    quality = 10
+    brie = Item.new("Aged Brie", -1, quality)
+    GildedRose.new([brie]).update_quality()
+    assert_equal(quality + 2, brie.quality)
+  end
+  
+  
+  def test_aged_brie_increase_in_quality_as_it_ages
+    quality = 10
+    brie = Item.new("Aged Brie", 0, quality)
+    GildedRose.new([brie]).update_quality()
     assert(brie.quality > quality)
   end
   
