@@ -11,17 +11,17 @@ class GildedRose
   end
   
   def update_single_item(item)
-    
-    if item.name == "Backstage passes to a TAFKAL80ETC concert"
+    case item.name
+    when "Backstage passes to a TAFKAL80ETC concert"
       item.quality += 1
       item.quality += 1 if item.sell_in < 11
       item.quality += 1 if item.sell_in < 6 
       item.quality = 0 if item.sell_in < 0
-    elsif item.name == "Aged Brie"
+    when "Aged Brie"
       item.quality += adjust_item_quality(item, 2, 1)
-    elsif item.name == "Conjured Mana Cake"
+    when "Conjured Mana Cake"
       item.quality += adjust_item_quality(item, -4, -2)
-    elsif item.name =="Sulfuras, Hand of Ragnaros"
+    when "Sulfuras, Hand of Ragnaros"
       item.quality += adjust_item_quality(item, 0, 0)
     else
       item.quality += adjust_item_quality(item, -2, -1)
