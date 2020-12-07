@@ -35,7 +35,7 @@ class WordIndex
     end
   end
   
-  def search(search_term:, condition: "and")
+  def search(search_term:, condition: :and)
     search_term.downcase!
     search_terms = search_term.split(" ")
     total_terms = search_terms.size
@@ -47,7 +47,7 @@ class WordIndex
       .sort
     
     case condition
-    when "and"
+    when :and
       results_count = {}
       combined_results.each do |index|
         results_count[index] ||= 0
@@ -56,8 +56,10 @@ class WordIndex
       results_count
         .filter! { |key, value| value == total_terms}
         .keys
-    when "or"
+    when :or
       combined_results.uniq
+    else
+      raise "Unknown condition"
     end  
     
   end 
@@ -77,8 +79,8 @@ inventory.products.each { |product| word_index.add_word_to_index(product) }
 
 keyboard_search = word_index.search(search_term: "keyboard")
 steel_search = word_index.search(search_term: "steel")
-and_search_results = word_index.search(search_term: "KEYBOARD steel", condition: "and")
-or_search_results = word_index.search(search_term: "KEYBOARD steel", condition: "or")
+and_search_results = word_index.search(search_term: "KEYBOARD steel", condition: :and)
+or_search_results = word_index.search(search_term: "KEYBOARD steel", condition: :or)
 
 print "#{keyboard_search.size} results: #{keyboard_search}\n" # => 12 results: [18, 50, 53, 58, 61, 73, 76, 85, 88, 103, 113, 120]
 print "#{steel_search.size} results: #{steel_search}\n" # => 10 results: [41, 58, 80, 87, 97, 99, 115, 117, 120, 121]
