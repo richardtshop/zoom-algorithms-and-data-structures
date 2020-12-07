@@ -67,14 +67,13 @@ class WordIndex
   def get_word_indices(word)
     index[word].sort
   end
-  
 end
 
 data = JSON.parse(File.read('./here.json'))
-products = Inventory.new(data)
+inventory = Inventory.new(data)
 word_index = WordIndex.new
 
-products.products.each { |product| word_index.add_word_to_index(product) }
+inventory.products.each { |product| word_index.add_word_to_index(product) }
 
 keyboard_search = word_index.search(search_term: "keyboard")
 steel_search = word_index.search(search_term: "steel")
@@ -85,7 +84,6 @@ print "#{keyboard_search.size} results: #{keyboard_search}\n" # => 12 results: [
 print "#{steel_search.size} results: #{steel_search}\n" # => 10 results: [41, 58, 80, 87, 97, 99, 115, 117, 120, 121]
 print "#{and_search_results.size} results: #{and_search_results}\n" # => 2 results: [58, 120]
 print "#{or_search_results.size} results: #{or_search_results}\n" # => 20 results: [18, 41, 50, 53, 58, 61, 73, 76, 80, 85, 87, 88, 97, 99, 103, 113, 115, 117, 120, 121]
-
 
 puts keyboard_search.concat(steel_search).uniq.sort == or_search_results # true (checking or results match uniq individual searches)
 # puts products.get_products_by_id(steel_search)
