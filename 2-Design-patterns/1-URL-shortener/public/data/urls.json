@@ -1,0 +1,14 @@
+{
+  "urls": {
+    "https://tenor.com/search/the-office-morse-code-gifs": "http://localhost:3000/B2P14PD2n",
+    "https://expressjs.com/en/api.html#res.redirect": "http://localhost:3000/nR59yyQK5",
+    "https://expressjs.com/en/api.html": "http://localhost:3000/k6Z2gE4NK",
+    "https://www.npmjs.com/package/valid-url": "http://localhost:3000/N1LwLwpRL"
+  },
+  "shortenedURLS": {
+    "http://localhost:3000/B2P14PD2n": "https://tenor.com/search/the-office-morse-code-gifs",
+    "http://localhost:3000/nR59yyQK5": "https://expressjs.com/en/api.html#res.redirect",
+    "http://localhost:3000/k6Z2gE4NK": "https://expressjs.com/en/api.html",
+    "http://localhost:3000/N1LwLwpRL": "https://www.npmjs.com/package/valid-url"
+  }
+}
