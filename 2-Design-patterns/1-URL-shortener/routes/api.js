@@ -7,7 +7,7 @@ var path = require('path');
 const urlData = require('../public/data/urls.json');
 
 router.get('/', (req, res, next) => {
-  res.render('form', { title: 'URL shortener' });
+  res.render('index', { title: 'URL shortener' });
 });
 
 router.get('/:id', function (req, res, next) {
@@ -26,7 +26,7 @@ router.get('/:id', function (req, res, next) {
 router.post('/new', (req, res, next) => {
   const  {url}  = req.body.url == undefined ? req.query : req.body;
   if (!validateURL.isUri(url)) {
-    return res.render('form', { title: 'URL shortener', error: 'Not a valid URL' });
+    return res.render('index', { title: 'URL shortener', error: 'Not a valid URL' });
   }
 
   if (urlData.urls[url] !== undefined) {
